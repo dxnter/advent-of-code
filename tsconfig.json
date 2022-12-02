@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "lib": ["ESNext"],
+    "module": "esnext",
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noUnusedLocals": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build", "coverage"]
+}

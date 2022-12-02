@@ -1,0 +1,60 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Solutions for Advent of Code",
+  "author": "Danny Foster <danny@foster.sh>",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "generate": "rimraf build && tsc --project tsconfig.build.json && node ./build/src/utils/generateStubs/index.js",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "bench": "vitest bench",
+    "format": "prettier --write .",
+    "postinstall": "husky install"
+  },
+  "config": {
+    "engine-strict": true
+  },
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxnter/advent-of-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dxnter/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/dxnter/advent-of-code#readme",
+  "devDependencies": {
+    "@types/jest": "^29.2.3",
+    "@types/node": "^18.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vitest/coverage-c8": "^0.25.3",
+    "chalk": "^5.1.2",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.8.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.3",
+    "vitest": "^0.25.3"
+  },
+  "lint-staged": {
+    "*.{js,md}": [
+      "eslint --max-warnings=0",
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
