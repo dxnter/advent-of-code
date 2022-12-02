@@ -1,11 +1,11 @@
 import fs from 'fs';
+
 import {
   findLatestYear,
   findNextPuzzleDay,
   isInvalidDate,
   scaffoldPuzzleFiles,
 } from './utils.js';
-
 import {
   yearDirectoryMissingMessage,
   maxPuzzleReachedMessage,
