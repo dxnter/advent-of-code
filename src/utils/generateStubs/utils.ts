@@ -7,14 +7,14 @@ import {
   puzzleFilesCreatedMessage,
 } from './output.js';
 
-const YEAR_REGEX = /^\d{4}$/;
-const DATE_REGEX = /^0[1-9]|1[0-9]|2[0-5]$/;
+const VALID_YEARS = /^\d{4}$/;
+const VALID_DATES = /^0[1-9]|1[0-9]|2[0-5]$/;
 
 export const findLatestYear = (): string => {
   const latestYear = Math.max(
     ...fs
       .readdirSync(`${process.cwd()}/src`)
-      .filter((dir) => YEAR_REGEX.test(dir))
+      .filter((dir) => VALID_YEARS.test(dir))
       .map(Number),
   );
 
@@ -24,7 +24,7 @@ export const findLatestYear = (): string => {
 };
 
 export const isInvalidDate = (year: string, day: string): boolean => {
-  return !YEAR_REGEX.test(year) || !DATE_REGEX.test(day);
+  return !VALID_YEARS.test(year) || !VALID_DATES.test(day);
 };
 
 export const findNextPuzzleDay = (year: string): string => {
@@ -32,7 +32,7 @@ export const findNextPuzzleDay = (year: string): string => {
     Math.max(
       ...fs
         .readdirSync(`${process.cwd()}/src/${year}`)
-        .filter((dir) => DATE_REGEX.test(dir))
+        .filter((dir) => VALID_DATES.test(dir))
         .map(Number),
     ) + 1;
 
