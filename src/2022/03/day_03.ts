@@ -14,7 +14,7 @@ export function part1(input: string) {
       const compartmentTwo = items.slice(compartmentOne.length);
       const sharedItem = [...new Set(compartmentOne)]
         .filter((item) => [...new Set(compartmentTwo)].includes(item))
-        .join('');
+        .at(0)!;
 
       return calculateItemPriority(sharedItem);
     });
@@ -45,7 +45,7 @@ export function part2(input: string) {
             ),
           ),
         ),
-      ].join('');
+      ].at(0)!;
 
       return calculateItemPriority(sharedBadge);
     });
