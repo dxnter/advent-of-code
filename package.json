@@ -57,5 +57,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "ramda": "^0.28.0"
   }
 }
