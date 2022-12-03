@@ -92,7 +92,7 @@ function shapeForExpectedOutcome(
 }
 
 export function part1(input: string) {
-  const raw = input
+  const playerScoresPerRound = input
     .trim()
     .split('\n')
     .map((round) => {
@@ -105,11 +105,11 @@ export function part1(input: string) {
         PlayerShapesMap[playerShape],
       );
     });
-  return raw.reduce((sum, round) => sum + round);
+  return playerScoresPerRound.reduce((sum, round) => sum + round);
 }
 
 export function part2(input: string) {
-  const raw = input
+  const playerScoresPerRound = input
     .trim()
     .split('\n')
     .map((round) => {
@@ -128,5 +128,5 @@ export function part2(input: string) {
         expectedPlayerShape,
       );
     });
-  return raw.reduce((sum, round) => sum + round);
+  return playerScoresPerRound.reduce((sum, round) => sum + round);
 }
