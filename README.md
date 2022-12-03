@@ -3,7 +3,8 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/dxnter/advent-of-code/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg?label=License&style=flat" alt="MIT License badge" /></a>
+  <a href="https://github.com/dxnter/advent-of-code/blob/main/.github/workflows/validate.yml"><img src="https://github.com/dxnter/advent-of-code/actions/workflows/validate.yml/badge.svg" alt="Validate workflow badge" /></a>
+  <a href="https://github.com/dxnter/advent-of-code/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?label=License&style=flat" alt="MIT License badge" /></a>
 </p>
 
 ## Getting Started
