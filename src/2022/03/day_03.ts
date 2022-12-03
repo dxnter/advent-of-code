@@ -8,7 +8,7 @@ export function part1(input: string) {
   const sharedItemPriorities = input
     .trim()
     .split('\n')
-    .map((rucksack) => {
+    .map((rucksack): number => {
       const items = [...rucksack];
       const compartmentOne = items.slice(0, items.length / 2);
       const compartmentTwo = items.slice(compartmentOne.length);
@@ -32,22 +32,22 @@ export function part2(input: string) {
       const groupIdx = Math.floor(rucksackIdx / 3);
       rucksackGroups[groupIdx] = new Array<Array<string>>().concat(
         rucksackGroups[groupIdx] || [],
-        [rucksack.split('')],
+        [[...rucksack]],
       );
       return rucksackGroups;
     }, [])
-    .map((rucksackGroup) => {
-      const sharedBadge = [
-        ...new Set(
-          rucksackGroup.reduce((uniqueItems, groupMemberItems) =>
-            uniqueItems.filter((uniqueItem) =>
-              groupMemberItems.includes(uniqueItem),
+    .map((rucksackGroup): number => {
+      return calculateItemPriority(
+        [
+          ...new Set(
+            rucksackGroup.reduce((uniqueItems, groupMemberItems) =>
+              uniqueItems.filter((uniqueItem) =>
+                groupMemberItems.includes(uniqueItem),
+              ),
             ),
           ),
-        ),
-      ].at(0)!;
-
-      return calculateItemPriority(sharedBadge);
+        ].at(0)!,
+      );
     });
 
   return sharedBadgePriorityByGroup.reduce(
