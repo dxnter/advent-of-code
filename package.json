@@ -48,7 +48,7 @@
     "vitest": "^0.25.3"
   },
   "lint-staged": {
-    "*.{ts,md}": [
+    "*.ts": [
       "eslint --max-warnings=0",
       "prettier --write"
     ]
