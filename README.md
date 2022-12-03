@@ -60,9 +60,8 @@ Once the stubs are generated, save the input for the puzzle you're solving in th
 
 1. Update the `EXAMPLE` variable to the example text displayed on AoC.
 2. Update the expected `equal()` value for the **example** in **Part 1** from `true` to the expected value listed on AoC.
-3. Update the expected `equal()` value for the **input** in **Part 1** from `true` to the expected value listed on AoC.
 
-After the assertions have been updated in the test file, start the test runner with `pnpm test` and begin working on the solution in `day_XX.ts`. Following the submission of part 1, the `day_XX.spec.ts` file should be updated with the expected `equal()` value for part 2.
+After the assertions have been updated in the test file, start the test runner with `pnpm test` and begin working on the solution in `day_XX.ts`. As you solve each part, the expected `equal()` value should be updated after a successful submission.
 
 #### Commands
 
