@@ -52,7 +52,7 @@ const scoreCalculator: Record<RoundOutcome, RoundScore> = {
 function isWinningPair(shapePair: [ShapeDetail, ShapeDetail]): boolean {
   return WinningScenarios.some(([losingShape, winningShape]) => {
     return [losingShape, winningShape].every(
-      (val, index) => val.type === shapePair[index].type,
+      (shape, index) => shape.type === shapePair[index].type,
     );
   });
 }
