@@ -13,7 +13,7 @@ const EXAMPLE = `2-4,6-8
 const input = getInputForDate({ year: '2022', day: '04' });
 
 describe('2022 - Day 04', () => {
-  describe('Part 1', () => {
+  describe.concurrent('Part 1', () => {
     it('example', () => {
       expect(part1(EXAMPLE)).to.equal(2);
     });
@@ -23,7 +23,7 @@ describe('2022 - Day 04', () => {
     });
   });
 
-  describe('Part 2', () => {
+  describe.concurrent('Part 2', () => {
     it('example', () => {
       expect(part2(EXAMPLE)).to.equal(4);
     });
