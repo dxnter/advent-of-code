@@ -7,10 +7,12 @@ interface SectionAssignment {
 
 const parseAssignmentPair = (pair: string) => {
   return R.pipe(
-    R.split(','),
-    R.map(
-      R.pipe(R.split('-'), R.map(Number), ([start, end]) => ({ start, end })),
-    ),
+    R.match(/^(\d+)-(\d+),(\d+)-(\d+)$/),
+    R.map(Number),
+    ([, sectionOneStart, sectionOneEnd, sectionTwoStart, sectionTwoEnd]) => [
+      { start: sectionOneStart, end: sectionOneEnd },
+      { start: sectionTwoStart, end: sectionTwoEnd },
+    ],
   )(pair) as [SectionAssignment, SectionAssignment];
 };
 
