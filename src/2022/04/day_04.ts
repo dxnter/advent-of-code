@@ -46,7 +46,13 @@ const pairPartiallyOverlaps = (
   );
 };
 
-export function part1(input: string) {
+const countSectionPairOverlaps = (
+  input: string,
+  pairComparator: (
+    pairOne: SectionAssignment,
+    pairTwo: SectionAssignment,
+  ) => boolean,
+): number => {
   return R.pipe(
     R.trim,
     R.split('\n'),
@@ -54,26 +60,18 @@ export function part1(input: string) {
       const [pairOne, pairTwo] = parseAssignmentPair(assignmentPair);
 
       return R.ifElse(
-        ([pairOne, pairTwo]) => pairFullyOverlaps(pairOne, pairTwo),
+        ([pairOne, pairTwo]) => pairComparator(pairOne, pairTwo),
         () => R.inc(totalOverlappingPairs),
         () => totalOverlappingPairs,
       )([pairOne, pairTwo]);
     }, 0),
   )(input);
+};
+
+export function part1(input: string) {
+  return countSectionPairOverlaps(input, pairFullyOverlaps);
 }
 
 export function part2(input: string) {
-  return R.pipe(
-    R.trim,
-    R.split('\n'),
-    R.reduce((totalOverlappingPairs, assignmentPair) => {
-      const [pairOne, pairTwo] = parseAssignmentPair(assignmentPair);
-
-      return R.ifElse(
-        ([pairOne, pairTwo]) => pairPartiallyOverlaps(pairOne, pairTwo),
-        () => R.inc(totalOverlappingPairs),
-        () => totalOverlappingPairs,
-      )([pairOne, pairTwo]);
-    }, 0),
-  )(input);
+  return countSectionPairOverlaps(input, pairPartiallyOverlaps);
 }
