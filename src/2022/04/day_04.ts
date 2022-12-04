@@ -5,11 +5,6 @@ interface SectionAssignment {
   end: number;
 }
 
-enum Section {
-  START = 'start',
-  END = 'end',
-}
-
 const parseAssignmentPair = (pair: string) => {
   return R.pipe(
     R.split(','),
@@ -19,36 +14,19 @@ const parseAssignmentPair = (pair: string) => {
   )(pair) as [SectionAssignment, SectionAssignment];
 };
 
-const sectionsOverlapBy = (
-  pairOrder: Section[],
-  pairOne: SectionAssignment,
-  pairTwo: SectionAssignment,
-): boolean => {
-  return R.and(
-    R.lte(pairOne[pairOrder[0]], pairTwo[pairOrder[1]]),
-    R.gte(pairOne[pairOrder[2]], pairTwo[pairOrder[3]]),
-  );
-};
-
-const checkPairsForOverlaps = (
-  pairOrder: Section[],
-  firstPair: SectionAssignment,
-  secondPair: SectionAssignment,
-): boolean => {
-  return R.or(
-    sectionsOverlapBy(pairOrder, firstPair, secondPair),
-    sectionsOverlapBy(pairOrder, secondPair, firstPair),
-  );
-};
-
 const pairFullyOverlaps = (
   firstPair: SectionAssignment,
   secondPair: SectionAssignment,
 ): boolean => {
-  return checkPairsForOverlaps(
-    [Section.START, Section.START, Section.END, Section.END],
-    firstPair,
-    secondPair,
+  return R.or(
+    R.and(
+      R.lte(firstPair.start, secondPair.start),
+      R.gte(firstPair.end, secondPair.end),
+    ),
+    R.and(
+      R.lte(secondPair.start, firstPair.start),
+      R.gte(secondPair.end, firstPair.end),
+    ),
   );
 };
 
@@ -56,10 +34,15 @@ const pairPartiallyOverlaps = (
   firstPair: SectionAssignment,
   secondPair: SectionAssignment,
 ): boolean => {
-  return checkPairsForOverlaps(
-    [Section.START, Section.START, Section.END, Section.START],
-    firstPair,
-    secondPair,
+  return R.or(
+    R.and(
+      R.lte(firstPair.start, secondPair.start),
+      R.gte(firstPair.end, secondPair.start),
+    ),
+    R.and(
+      R.lte(secondPair.start, firstPair.start),
+      R.gte(secondPair.end, firstPair.start),
+    ),
   );
 };
 
