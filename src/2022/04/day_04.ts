@@ -1,4 +1,17 @@
-import * as R from 'ramda';
+import {
+  pipe,
+  match,
+  map,
+  or,
+  lte,
+  gte,
+  and,
+  trim,
+  split,
+  reduce,
+  ifElse,
+  inc,
+} from 'ramda';
 
 interface SectionAssignment {
   start: number;
@@ -6,9 +19,9 @@ interface SectionAssignment {
 }
 
 const parseAssignmentPair = (pair: string) => {
-  return R.pipe(
-    R.match(/^(\d+)-(\d+),(\d+)-(\d+)$/),
-    R.map(Number),
+  return pipe(
+    match(/^(\d+)-(\d+),(\d+)-(\d+)$/),
+    map(Number),
     ([, sectionOneStart, sectionOneEnd, sectionTwoStart, sectionTwoEnd]) => [
       { start: sectionOneStart, end: sectionOneEnd },
       { start: sectionTwoStart, end: sectionTwoEnd },
@@ -20,14 +33,14 @@ const pairFullyOverlaps = (
   firstPair: SectionAssignment,
   secondPair: SectionAssignment,
 ): boolean => {
-  return R.or(
-    R.and(
-      R.lte(firstPair.start, secondPair.start),
-      R.gte(firstPair.end, secondPair.end),
+  return or(
+    and(
+      lte(firstPair.start, secondPair.start),
+      gte(firstPair.end, secondPair.end),
     ),
-    R.and(
-      R.lte(secondPair.start, firstPair.start),
-      R.gte(secondPair.end, firstPair.end),
+    and(
+      lte(secondPair.start, firstPair.start),
+      gte(secondPair.end, firstPair.end),
     ),
   );
 };
@@ -36,14 +49,14 @@ const pairPartiallyOverlaps = (
   firstPair: SectionAssignment,
   secondPair: SectionAssignment,
 ): boolean => {
-  return R.or(
-    R.and(
-      R.lte(firstPair.start, secondPair.start),
-      R.gte(firstPair.end, secondPair.start),
+  return or(
+    and(
+      lte(firstPair.start, secondPair.start),
+      gte(firstPair.end, secondPair.start),
     ),
-    R.and(
-      R.lte(secondPair.start, firstPair.start),
-      R.gte(secondPair.end, firstPair.start),
+    and(
+      lte(secondPair.start, firstPair.start),
+      gte(secondPair.end, firstPair.start),
     ),
   );
 };
@@ -55,13 +68,13 @@ const countSectionPairOverlaps = (
     pairTwo: SectionAssignment,
   ) => boolean,
 ): number => {
-  return R.pipe(
-    R.trim,
-    R.split('\n'),
-    R.reduce((totalOverlappingPairs, assignmentPair) => {
-      return R.ifElse(
+  return pipe(
+    trim,
+    split('\n'),
+    reduce((totalOverlappingPairs, assignmentPair) => {
+      return ifElse(
         ([pairOne, pairTwo]) => pairComparator(pairOne, pairTwo),
-        () => R.inc(totalOverlappingPairs),
+        () => inc(totalOverlappingPairs),
         () => totalOverlappingPairs,
       )([...parseAssignmentPair(assignmentPair)]);
     }, 0),
