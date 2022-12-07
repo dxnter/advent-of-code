@@ -1,19 +1,23 @@
-<h1 align="center">
-  🎄 Advent of Code Solutions
-</h1>
+# 🎄 Advent of Code
 
-<p align="center">
-  <a href="https://github.com/dxnter/advent-of-code/blob/main/.github/workflows/validate.yml"><img src="https://github.com/dxnter/advent-of-code/actions/workflows/validate.yml/badge.svg" alt="Validate workflow badge" /></a>
-  <a href="https://github.com/dxnter/advent-of-code/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?label=License&style=flat" alt="MIT License badge" /></a>
-</p>
+![Tests](https://github.com/dxnter/advent-of-code/actions/workflows/test.yml/badge.svg)
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?label=License&style=flat)
 
-## Getting Started
+Solutions to the [Advent of Code](https://adventofcode.com/) challenges.
+
+| Year | Days Completed | Stars Collected   |
+|---|---|---|
+| 2022 | ![2022 days completed](https://img.shields.io/badge/days%20completed-6-red&year=2022) | ![2022 stars collected](https://img.shields.io/badge/stars%20⭐-12-yellow&year=2022) |
+
+---
+
+## Setup
 
 ### Requirements
 
-- [Node.js](https://nodejs.org/en/) v18.12.1 or higher
+- [Node.js](https://nodejs.org/en/) v18.12.1+
 
-For contributors, please use [pnpm](https://pnpm.js.org/). Otherwise, feel free to use the package manager of your choice.
+For contributors, please use [pnpm](https://pnpm.js.org/). Otherwise, feel free to use a package manager of your choice.
 
 ### Installation
 
@@ -23,37 +27,43 @@ cd advent-of-code
 pnpm i
 ```
 
+> **Note**
+> If you're using this project for your own solutions, the year folder(s) that contain previous solutions should be removed before using continuing.
+
 ## Usage
 
-### Generate solution stubs
+### Scaffold the next day
 
-The workflow for solving and debugging puzzles depends on the following files:
+```sh
+pnpm scaffold
 
-- `day_XX.ts` - The solution file
-- `input.txt` - The input file
-- `day_XX.spec.ts` - The solution test file
-- `day_XX.bench.ts` - The solution benchmark file
-
-A `generate` script is available to automatically generate these stubs for you based on the day you want to solve.
-
-#### Commands
-
-Generate stubs within the most recent year for the next puzzle:
-
-```bash
-pnpm generate
+# output:
+# SUCCESS  Puzzle files created
+# +  advent-of-code/src/2022/07/input.txt
+# +  advent-of-code/src/2022/07/day_07.ts
+# +  advent-of-code/src/2022/07/day_07.spec.ts
+# +  advent-of-code/src/2022/07/day_07.bench.ts
+# 🎄 Run pnpm test 2022/07 to start the test runner
 ```
 
-Generate stubs for a specific year or day:
+### Scaffold a specific day
 
-```bash
-pnpm generate 2022/09
-pnpm generate 2000/01
+```sh
+# example: `pnpm scaffold 2019/20`
+pnpm scaffold <year>/<day>
+
+# output:
+# SUCCESS  Puzzle files created
+# +  advent-of-code/src/2019/20/input.txt
+# +  advent-of-code/src/2019/20/day_20.ts
+# +  advent-of-code/src/2019/20/day_20.spec.ts
+# +  advent-of-code/src/2019/20/day_20.bench.ts
+# 🎄 Run pnpm test 2019/20 to start the test runner
 ```
 
 ### Save the input
 
-Once the stubs are generated, save the input for the puzzle you're solving in the `input.txt` file.
+Once the file stubs are created, save the input for the puzzle you're solving in the `input.txt` file.
 
 ### Checking solutions
 

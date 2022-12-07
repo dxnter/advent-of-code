@@ -10,6 +10,7 @@ import {
   yearDirectoryMissingMessage,
   maxPuzzleReachedMessage,
   commandErrorHelpMessage,
+  puzzleFilesCreatedTestInfoMessage,
 } from './output.js';
 
 (() => {
@@ -53,4 +54,6 @@ import {
   }
 
   scaffoldPuzzleFiles(fullDateDirectory, year, day);
+
+  console.log(puzzleFilesCreatedTestInfoMessage(year, day));
 })();

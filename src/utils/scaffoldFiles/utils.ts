@@ -48,11 +48,9 @@ export const writeToPath =
   (path: string) => (fileName: string, content: string) => {
     const filePath = `${path}/${fileName}`;
 
-    fs.writeFile(filePath, content, (err) => {
-      if (err) throw err;
-      console.log(`${c.green('+ ')}`, filePath);
-      return true;
-    });
+    fs.writeFileSync(filePath, content);
+
+    console.log(`${c.green('+ ')}`, filePath);
   };
 
 export function scaffoldPuzzleFiles(
@@ -80,6 +78,7 @@ export function scaffoldPuzzleFiles(
   }
 
   console.log(puzzleFilesCreatedMessage);
+
   Object.entries(files).forEach(([type, fileName]) => {
     writeFile(fileName, createTemplate[type](year, day));
   });

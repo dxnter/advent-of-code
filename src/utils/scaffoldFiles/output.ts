@@ -32,3 +32,10 @@ export const puzzleFilesExistErrorMessage = (year: string, day: string) =>
 export const puzzleFilesCreatedMessage = `\n${c.bold(
   c.inverse(c.green(' SUCCESS ')),
 )}${c.green(' Puzzle files created\n')}`;
+
+export const puzzleFilesCreatedTestInfoMessage = (year: string, day: string) =>
+  `\n🎄 ${c.green(
+    `Run ${c.white.bold(
+      `pnpm test ${year}/${day}`,
+    )} to start the test runner\n`,
+  )}`;

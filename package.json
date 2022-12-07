@@ -6,7 +6,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "generate": "rimraf build && tsc --project tsconfig.build.json && node ./build/src/utils/generateStubs/index.js",
+    "generate": "rimraf build && tsc --project tsconfig.build.json && node ./build/src/utils/scaffoldFiles/index.js",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "bench": "vitest bench",
