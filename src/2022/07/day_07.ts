@@ -4,8 +4,7 @@ const isListCommand = (command: string) => test(/\$ ls/, command);
 const isChangingDirectories = (command: string) => test(/\$ cd/, command);
 const shouldNavigateToBase = (command: string) => test(/\$ cd \//, command);
 const shouldNavigateToParent = (command: string) => test(/\$ cd \.\./, command);
-const isNotDirectoryListing = (command: string) =>
-  test(/^((?!(dir)).)*$/, command);
+const isFileSize = (command: string) => test(/\d+/, command);
 
 const getAbsolutePath = (path: string[]) => `/${join('/', path)}`;
 
@@ -29,7 +28,7 @@ function calculateDirectorySizes(input: string): Map<string, number> {
 
     if (!directorySizes.has(path)) directorySizes.set(path, 0);
 
-    when(isNotDirectoryListing, () => {
+    when(isFileSize, () => {
       const fileSize = Number(head(split(' ', line)));
       directorySizes.set(path, directorySizes.get(path)! + fileSize);
 
