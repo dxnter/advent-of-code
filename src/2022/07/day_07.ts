@@ -1,4 +1,15 @@
-import { test, join, last, split, reverse, head, slice, when } from 'ramda';
+import {
+  test,
+  join,
+  last,
+  split,
+  reverse,
+  head,
+  slice,
+  when,
+  lte,
+  gte,
+} from 'ramda';
 
 const isListCommand = (command: string) => test(/\$ ls/, command);
 const isChangingDirectories = (command: string) => test(/\$ cd/, command);
@@ -52,7 +63,7 @@ export function part1(input: string) {
   const directorySizes = calculateDirectorySizes(input);
 
   return [...directorySizes.values()]
-    .filter((size) => size <= 100000)
+    .filter((size) => lte(size, 100000))
     .reduce((acc, curr) => acc + curr, 0);
 }
 
@@ -60,7 +71,9 @@ export function part2(input: string) {
   const directorySizes = calculateDirectorySizes(input);
 
   return [...directorySizes.values()]
-    .filter((size) => size >= 30000000 - (70000000 - directorySizes.get('/')!))
+    .filter((size) =>
+      gte(size, 30000000 - (70000000 - directorySizes.get('/')!)),
+    )
     .sort((a, b) => a - b)
     .shift();
 }
