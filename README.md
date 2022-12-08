@@ -28,7 +28,7 @@ pnpm i
 ```
 
 > **Note**
-> If you're using this project for your own solutions, the year folder(s) that contain previous solutions should be removed before using continuing.
+> If you're using this project for your own solutions, the year folder(s) that contain previous solutions should be removed before use.
 
 ## Usage
 
