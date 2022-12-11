@@ -14,8 +14,23 @@ class Point {
     this.y = y;
   }
 
+  getNextDirection(direction: Direction): number[] {
+    switch (direction) {
+      case 'U':
+        return [0, -1];
+      case 'D':
+        return [0, 1];
+      case 'L':
+        return [-1, 0];
+      case 'R':
+        return [1, 0];
+      default:
+        return [0, 0];
+    }
+  }
+
   move(direction: Direction) {
-    const [x, y] = getNextDirection(direction);
+    const [x, y] = this.getNextDirection(direction);
     this.x += x;
     this.y += y;
   }
@@ -36,25 +51,6 @@ class Point {
   }
 }
 
-function markVisited(x: number, y: number, visited: Set<string>) {
-  visited.add(`${x},${y}`);
-}
-
-function getNextDirection(direction: Direction): number[] {
-  switch (direction) {
-    case 'U':
-      return [0, -1];
-    case 'D':
-      return [0, 1];
-    case 'L':
-      return [-1, 0];
-    case 'R':
-      return [1, 0];
-    default:
-      return [0, 0];
-  }
-}
-
 function getMotions(input: string): Motion[] {
   return input
     .trim()
@@ -66,6 +62,10 @@ function getMotions(input: string): Motion[] {
         moves: Number(moves),
       } as Motion;
     });
+}
+
+function markVisited(x: number, y: number, visited: Set<string>) {
+  visited.add(`${x},${y}`);
 }
 
 export function part1(input: string) {
