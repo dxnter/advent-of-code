@@ -3,12 +3,12 @@ import {
   join,
   last,
   split,
-  reverse,
   head,
   slice,
   when,
   lte,
   gte,
+  anyPass,
 } from 'ramda';
 
 const isListCommand = (command: string) => test(/\$ ls/, command);
@@ -21,15 +21,14 @@ const getAbsolutePath = (path: string[]) => `/${join('/', path)}`;
 
 function calculateDirectorySizes(input: string): Map<string, number> {
   const directorySizes = new Map<string, number>();
-  let currentDirectory: string[] = [];
+  const currentDirectory: string[] = [];
 
   split('\n', input).forEach((line) => {
-    if (isListCommand(line)) return;
+    if (anyPass([isListCommand, shouldNavigateToBase])(line)) return;
 
     if (isChangingDirectories(line)) {
       const directory = last(split(' ', line))!;
 
-      if (shouldNavigateToBase(line)) return (currentDirectory = []);
       if (shouldNavigateToParent(line)) return currentDirectory.pop();
 
       return currentDirectory.push(directory);
@@ -43,7 +42,7 @@ function calculateDirectorySizes(input: string): Map<string, number> {
       const fileSize = Number(head(split(' ', line)));
       directorySizes.set(path, directorySizes.get(path)! + fileSize);
 
-      reverse(currentDirectory).forEach((directory, idx) => {
+      currentDirectory.forEach((directory, idx) => {
         const parentDirectory = getAbsolutePath(
           slice(0, idx, currentDirectory),
         );
