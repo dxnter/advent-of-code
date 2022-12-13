@@ -39,7 +39,7 @@ class ClockCircuit {
     }
   }
 
-  spritePosition() {
+  get spritePosition() {
     return [this.register - 1, this.register, this.register + 1];
   }
 }
@@ -69,7 +69,7 @@ export function part1(input: string) {
 
 class CathodeRayTube {
   public image: string[] = [];
-  public spritePosition = ['■', '■', '■'].concat(new Array(37).fill('.'));
+  public spritePosition = ['■', '■', '■'].concat(new Array(37).fill(' '));
   public row = '';
 
   get lastPixel() {
@@ -97,7 +97,7 @@ export function part2(input: string) {
     if (equals('noop', instruction.value)) {
       clock.evaluateSignalStrength();
 
-      crt.drawPixel(clock.spritePosition());
+      crt.drawPixel(clock.spritePosition);
 
       return clock.cycle++;
     }
@@ -105,7 +105,7 @@ export function part2(input: string) {
     range(0, 2).forEach(() => {
       clock.evaluateSignalStrength();
 
-      crt.drawPixel(clock.spritePosition());
+      crt.drawPixel(clock.spritePosition);
 
       clock.cycle++;
     });
