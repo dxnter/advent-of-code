@@ -1,15 +1,17 @@
 import { has, last, sum, split, values, equals, range, any } from 'ramda';
 
+class Instruction {
+  constructor(public type: string, public value?: number) {}
+}
+
 function parseInput(input: string) {
   return input
     .trim()
     .split('\n')
     .map((instruction) => {
       return instruction === 'noop'
-        ? {
-            value: 'noop',
-          }
-        : { value: Number(last(split(' ', instruction))) };
+        ? new Instruction('noop')
+        : new Instruction('addx', Number(last(split(' ', instruction))));
     });
 }
 
@@ -49,7 +51,7 @@ export function part1(input: string) {
   const clock = new ClockCircuit();
 
   instructions.forEach((instruction) => {
-    if (equals('noop', instruction.value)) {
+    if (!instruction.value) {
       clock.evaluateSignalStrength();
 
       return clock.cycle++;
@@ -94,7 +96,7 @@ export function part2(input: string) {
   const crt = new CathodeRayTube();
 
   instructions.forEach((instruction) => {
-    if (equals('noop', instruction.value)) {
+    if (!instruction.value) {
       clock.evaluateSignalStrength();
 
       crt.drawPixel(clock.spritePosition);
