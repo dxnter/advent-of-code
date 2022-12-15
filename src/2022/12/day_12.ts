@@ -47,25 +47,25 @@ function canMove(from: string, to: string): boolean {
 }
 
 export function part1(input: string) {
-  const map: HeightMap = input.split('\n').map((line) => [...line]);
+  const grid: HeightMap = input.split('\n').map((line) => [...line]);
 
   let start = '0,0';
   let end = '0,0';
 
-  for (let row = 0; row < map.length; row++) {
-    for (let col = 0; col < map[0].length; col++) {
-      const current = map[row][col];
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      const current = grid[row][col];
       if (current === 'S') {
-        map[row][col] = 's';
+        grid[row][col] = 's';
         start = `${row},${col}`;
       } else if (current === 'E') {
-        map[row][col] = 'z';
+        grid[row][col] = 'z';
         end = `${row},${col}`;
       }
     }
   }
 
-  return bfs(map, start, end);
+  return bfs(grid, start, end);
 }
 
 export function part2(input: string) {
