@@ -7,7 +7,7 @@ Solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
 | Year | Days Completed | Stars Collected   |
 |---|---|---|
-| 2022 | ![2022 days completed](https://img.shields.io/badge/days%20completed-10-red&year=2022) | ![2022 stars collected](https://img.shields.io/badge/stars%20⭐-21-yellow&year=2022) |
+| 2022 | ![2022 days completed](https://img.shields.io/badge/days%20completed-12-red&year=2022) | ![2022 stars collected](https://img.shields.io/badge/stars%20⭐-24-yellow&year=2022) |
 
 ---
 
